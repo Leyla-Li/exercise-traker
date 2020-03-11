@@ -58,7 +58,29 @@ export default class CreateExercise extends Component {
     render() {
         return(
             <div>
-                <p>You are on the Create Exercise Component</p>
+                <h3>Create New Exercise</h3>
+                <form onSubmit={this.onSubmit}>
+                    <div className='form-group'>
+                        <label>Username: </label>
+                        <select ref='userInput'
+                            required
+                            className='form-control'
+                            value={this.state.username}
+                            onChange={this.onChangeUsername}>
+                            {
+                                this.state.users.map((user) => {
+                                    return <option key={user} value={user}>
+                                                {user}
+                                            </option>
+                                })
+                            }    
+                        </select>
+                    </div>
+
+                    <div className='form-group'>
+                        <label>Description:</label>
+                    </div>
+                </form>
             </div>
         );
     }
