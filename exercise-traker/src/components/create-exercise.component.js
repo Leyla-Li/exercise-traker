@@ -54,7 +54,8 @@ export default class CreateExercise extends Component {
 
         console.log(exercise);
 
-        sindow.location = '/';
+        //bring users back to home page
+        window.location = '/';
     }
 
     render() {
