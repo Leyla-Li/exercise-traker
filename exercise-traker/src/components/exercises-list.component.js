@@ -3,19 +3,23 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default class ExercisesList extends Component {
-    // constructor(props){
-    //     super(props);
+    constructor(props){
+        super(props);
 
-    //     this.state = {
-    //         exercises: []
-    //     };
+        this.state = {
+            exercises: []
+        };
 
-    //     deleteExercise = () => {}
+        deleteExercise = () => {}
 
-    //     componentDidMount() {
-    //         axios.get()
-    //     }
-    // }
+        componentDidMount() {
+            axios.get('http://loaclhost:5000/exercises/')
+                .then(res => {
+                    this.setState({exercises: res.data})
+                })
+                .catch(err => res.status(400).json('Error: '+ err));
+        }
+    }
 
     render() {
         return(
