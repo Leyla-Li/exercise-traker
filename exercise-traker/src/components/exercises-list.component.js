@@ -16,21 +16,35 @@ export default class ExercisesList extends Component {
             .then(res => {
                 this.setState({exercises: res.data})
             })
-            .catch(err => res.status(400).json('Error: '+ err));
+            .catch(err => console.log(err));
     }
 
     deleteExercise = (id) => {
         axios.delete('http://localhost:5000/exercises/' + id)
             .then(res => console.log(res.data));
         this.setState({
-            exercises: this.state.exercises.filter(el => el.id !== id)
+            exercises: this.state.exercises.filter(el => el._id !== id)
         })
     }
 
     render() {
         return(
             <div>
-                <p>You are on the Exercises List Component</p>
+                <h3>Exercises List</h3>
+                <table className='table'>
+                    <thead className='thead-light'>
+                        <tr>
+                            <th>Username</th>
+                            <th>Description</th>
+                            <th>Duration</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.exerciseList()}
+                    </tbody>
+                </table>
             </div>
         );
     }
