@@ -9,16 +9,22 @@ export default class ExercisesList extends Component {
         this.state = {
             exercises: []
         };
+    }
 
-        deleteExercise = () => {}
+    componentDidMount() {
+        axios.get('http://loaclhost:5000/exercises/')
+            .then(res => {
+                this.setState({exercises: res.data})
+            })
+            .catch(err => res.status(400).json('Error: '+ err));
+    }
 
-        componentDidMount() {
-            axios.get('http://loaclhost:5000/exercises/')
-                .then(res => {
-                    this.setState({exercises: res.data})
-                })
-                .catch(err => res.status(400).json('Error: '+ err));
-        }
+    deleteExercise = (id) => {
+        axios.delete('http://localhost:5000/exercises/' + id)
+            .then(res => console.log(res.data));
+        this.setState({
+            exercises: this.state.exercises.filter(el => el.id !== id)
+        })
     }
 
     render() {
