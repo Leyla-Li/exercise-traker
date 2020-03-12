@@ -64,7 +64,7 @@ export default class CreateExercise extends Component {
             .then(res => console.log(res.data));
 
         //bring users back to home page
-        // window.location = '/';
+        window.location = '/';
     }
 
     render() {
